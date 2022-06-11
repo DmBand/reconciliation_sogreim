@@ -1,0 +1,8 @@
+{% extends 'reconciliation_app/base.html' %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock title %}
+{% block content %}
+<a href="{% url 'rc_app:logout_view' %}">Выход</a>
+<p>Сверка</p>
+{% endblock content %}

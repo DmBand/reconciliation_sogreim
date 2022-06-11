@@ -1,7 +1,8 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from .forms import LoginForm
@@ -20,6 +21,13 @@ class LoginUserView(LoginView):
         return reverse_lazy('rc_app:reconciliation_page')
 
 
-@login_required(login_url='rc_app:login_page')
+@login_required(login_url='rc_app:login_view')
+def logout_view(request):
+    logout(request)
+    return redirect('rc_app:login_view')
+
+
+@login_required(login_url='rc_app:login_view')
 def reconciliation_page(request):
-    return HttpResponse('Сверка')
+    context = {'title': 'Сверка'}
+    return render(request, 'reconciliation_app/reconciliation_page.html', context)
