@@ -10,6 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class ReconcilicationDateAdmin(admin.ModelAdmin):
     list_display = ('date', 'product')
+    list_filter = ('product',)
 
 
 admin.site.register(ProductCategory)

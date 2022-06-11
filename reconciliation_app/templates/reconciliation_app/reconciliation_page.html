@@ -1,8 +1,31 @@
 {% extends 'reconciliation_app/base.html' %}
-{% block title %}
-<title>{{ title }}</title>
-{% endblock title %}
+
 {% block content %}
-<a href="{% url 'rc_app:logout_view' %}">Выход</a>
-<p>Сверка</p>
+<div class="wrapper">
+    <header class="header">
+        <nav class="nav">
+            <a href="" class="nav-btn">Даты сверок</a>
+            <a href="{% url 'rc_app:logout_view' %}">Выход</a>
+        </nav>
+    </header>
+    <main class="main">                   
+        <form class="form" action="" method="post">
+            {% csrf_token %}            
+            {% for c in categories %}                
+                <div class="one-category">
+                    <h1 class="category-title">{{ c.name }}</h1>
+                    <div class="products">
+                    {% for p in c.product_set.all %}                    
+                        <label class="label" for="{{ p.id }}">{{ p.name }}
+                            <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}">
+                        </label>                                                
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="button" type="submit">submit</button>
+        </form>                        
+    </main>
+    <footer class="footer">Футер</footer>
+</div>
 {% endblock content %}

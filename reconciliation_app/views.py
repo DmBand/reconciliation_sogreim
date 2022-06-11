@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -6,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from .forms import LoginForm
+from .models import ProductCategory, Product, ReconcilicationDate
 
 
 class LoginUserView(LoginView):
@@ -29,5 +32,16 @@ def logout_view(request):
 
 @login_required(login_url='rc_app:login_view')
 def reconciliation_page(request):
-    context = {'title': 'Сверка'}
+    categories = ProductCategory.objects.all()
+    if request.method == 'POST':
+        cleaned_data = request.POST.copy()
+        del cleaned_data['csrfmiddlewaretoken']
+        for p in cleaned_data:
+            if cleaned_data[p]:
+                ReconcilicationDate.objects.create(
+                    date=datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d"),
+                    product=Product.objects.get(pk=int(p))
+                )
+
+    context = {'title': 'Сверка', 'categories': categories}
     return render(request, 'reconciliation_app/reconciliation_page.html', context)

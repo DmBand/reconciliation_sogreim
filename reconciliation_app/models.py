@@ -27,7 +27,7 @@ class Product(models.Model):
 
 
 class ReconcilicationDate(models.Model):
-    date = models.DateField(verbose_name='дата сверки')
+    date = models.DateField(verbose_name='дата сверки', blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='товар', null=True)
 
     def __str__(self):
