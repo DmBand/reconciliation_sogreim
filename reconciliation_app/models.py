@@ -24,3 +24,16 @@ class Product(models.Model):
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
         ordering = ['category']
+
+
+class ReconcilicationDate(models.Model):
+    date = models.DateField(verbose_name='дата сверки')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='товар', null=True)
+
+    def __str__(self):
+        return str(self.date)
+
+    class Meta:
+        verbose_name = 'дата сверки'
+        verbose_name_plural = 'даты сверки'
+        ordering = ['product']
