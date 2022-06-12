@@ -47,6 +47,5 @@ def reconciliation_page(request):
                         product=Product.objects.get(pk=int(p))
                     )
         return redirect('rc_app:reconciliation_page')
-
     context = {'title': 'Сверка', 'categories': categories}
     return render(request, 'reconciliation_app/reconciliation_page.html', context)
