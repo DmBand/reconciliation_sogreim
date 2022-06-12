@@ -3,29 +3,32 @@
 {% block content %}
 <div class="wrapper">
     <header class="header">
-        <nav class="nav">
-            <a href="" class="nav-btn">Даты сверок</a>
-            <a href="{% url 'rc_app:logout_view' %}">Выход</a>
+        <div class="login">{{ request.user.username }}</div>        
+        <nav class="nav">            
+            <button class="button" type="submit" form="form">Сохранить</button>
+            <a href="/admin/reconciliation_app/reconcilicationdate/" class="nav-btn">Даты сверок</a>
+            <a href="{% url 'rc_app:logout_view' %}" class="nav-btn">Выход</a>
         </nav>
     </header>
     <main class="main">                   
-        <form class="form" action="" method="post">
-            {% csrf_token %}            
+        <form class="form" action="" method="post" id="form">
+            {% csrf_token %} 
+            <div id="main"></div>           
             {% for c in categories %}                
                 <div class="one-category">
-                    <h1 class="category-title">{{ c.name }}</h1>
+                    <h1 class="category-title">{{ c.name }}</h1>                    
                     <div class="products">
-                    {% for p in c.product_set.all %}                    
-                        <label class="label" for="{{ p.id }}">{{ p.name }}
+                        {% for p in c.product_set.all %} 
+                        <div class="one-product">
+                            <label class="label" for="{{ p.id }}">{{ p.name }}</label>                                                
                             <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}">
-                        </label>                                                
-                    {% endfor %}
-                    </div>
+                        </div>  
+                        {% endfor %}
+                    </div>                    
                 </div>
-            {% endfor %}
-            <button class="button" type="submit">submit</button>
+            {% endfor %}            
         </form>                        
     </main>
-    <footer class="footer">Футер</footer>
+    <footer class="footer"><a href="#main">up</a></footer>
 </div>
 {% endblock content %}
