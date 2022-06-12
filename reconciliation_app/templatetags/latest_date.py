@@ -6,6 +6,6 @@ register = template.Library()
 
 @register.simple_tag()
 def get_latest(product_id: int):
-    r = ReconciliationDate.objects.filter(product=product_id)
-    if r:
-        return r.latest('date')
+    rc = ReconciliationDate.objects.filter(product=product_id)
+    if rc:
+        return rc.latest('date')
