@@ -3,7 +3,6 @@ import datetime
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
@@ -38,15 +37,16 @@ def reconciliation_page(request):
         del cleaned_data['csrfmiddlewaretoken']
         for p in cleaned_data:
             if cleaned_data[p]:
+                # Получаем список всех дат сверки конкретного продукта
+                # и сравниваем их с переданной датой. Повторяющиеся даты не записываем
                 dates = [d.date for d in ReconciliationDate.objects.filter(product=int(p))]
-                d = datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d").date()
-                if d not in dates:
+                date = datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d").date()
+                if date not in dates:
                     ReconciliationDate.objects.create(
-                        date=datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d"),
+                        date=date,
                         product=Product.objects.get(pk=int(p))
-                        )
-    # date = ReconciliationDate.objects.all()
-    # print(date)
+                    )
+        return redirect('rc_app:reconciliation_page')
 
     context = {'title': 'Сверка', 'categories': categories}
     return render(request, 'reconciliation_app/reconciliation_page.html', context)
