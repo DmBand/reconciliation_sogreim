@@ -1,4 +1,5 @@
 {% extends 'reconciliation_app/base.html' %}
+{% load latest_date %}
 
 {% block content %}
 <div class="wrapper">
@@ -21,7 +22,7 @@
                     {% for p in c.product_set.all %}
                     <div class="one-product">
                         <label class="label" for="{{ p.id }}">{{ p.name }}</label>
-                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{{ p.reconciliationdate_set.last }}">
+                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{% get_latest p.id %}">
                     </div>
                     {% endfor %}
                 </div>
