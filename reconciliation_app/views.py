@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from .forms import LoginForm
-from .models import ProductCategory, Product, ReconcilicationDate
+from .models import ProductCategory, Product, ReconciliationDate
 
 
 class LoginUserView(LoginView):
@@ -38,10 +38,15 @@ def reconciliation_page(request):
         del cleaned_data['csrfmiddlewaretoken']
         for p in cleaned_data:
             if cleaned_data[p]:
-                ReconcilicationDate.objects.create(
-                    date=datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d"),
-                    product=Product.objects.get(pk=int(p))
-                )
+                dates = [d.date for d in ReconciliationDate.objects.filter(product=int(p))]
+                d = datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d").date()
+                if d not in dates:
+                    ReconciliationDate.objects.create(
+                        date=datetime.datetime.strptime(cleaned_data[p], "%Y-%m-%d"),
+                        product=Product.objects.get(pk=int(p))
+                        )
+    # date = ReconciliationDate.objects.all()
+    # print(date)
 
     context = {'title': 'Сверка', 'categories': categories}
     return render(request, 'reconciliation_app/reconciliation_page.html', context)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProductCategory, Product, ReconcilicationDate
+from .models import ProductCategory, Product, ReconciliationDate
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -11,8 +11,9 @@ class ProductAdmin(admin.ModelAdmin):
 class ReconcilicationDateAdmin(admin.ModelAdmin):
     list_display = ('date', 'product')
     list_filter = ('product',)
+    ordering = ['date']
 
 
 admin.site.register(ProductCategory)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ReconcilicationDate, ReconcilicationDateAdmin)
+admin.site.register(ReconciliationDate, ReconcilicationDateAdmin)

@@ -2,33 +2,35 @@
 
 {% block content %}
 <div class="wrapper">
-    <header class="header">
-        <div class="login">{{ request.user.username }}</div>        
-        <nav class="nav">            
+    <header class="header" id="head">
+        <div class="login">{{ request.user.username }}</div>
+        <nav class="nav">
             <button class="button" type="submit" form="form">Сохранить</button>
-            <a href="/admin/reconciliation_app/reconcilicationdate/" class="nav-btn">Даты сверок</a>
+            <a href="/admin/reconciliation_app/reconciliationdate/" class="nav-btn">Даты сверок</a>
             <a href="{% url 'rc_app:logout_view' %}" class="nav-btn">Выход</a>
         </nav>
     </header>
-    <main class="main">                   
+    <main class="main" id="main">
         <form class="form" action="" method="post" id="form">
-            {% csrf_token %} 
-            <div id="main"></div>           
-            {% for c in categories %}                
-                <div class="one-category">
-                    <h1 class="category-title">{{ c.name }}</h1>                    
-                    <div class="products">
-                        {% for p in c.product_set.all %} 
-                        <div class="one-product">
-                            <label class="label" for="{{ p.id }}">{{ p.name }}</label>                                                
-                            <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}">
-                        </div>  
-                        {% endfor %}
-                    </div>                    
+            {% csrf_token %}
+
+            {% for c in categories %}
+            <div class="one-category">
+                <h1 class="category-title">{{ c.name }}</h1>
+                <div class="products">
+                    {% for p in c.product_set.all %}
+                    <div class="one-product">
+                        <label class="label" for="{{ p.id }}">{{ p.name }}</label>
+                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{{ p.reconciliationdate_set.last }}">
+                    </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}            
-        </form>                        
+            </div>
+            {% endfor %}
+        </form>
     </main>
-    <footer class="footer"><a href="#main">up</a></footer>
+    <footer class="footer">
+        <a class="up" href="#main"><p class="up-text">Вверх</p></a>
+    </footer>
 </div>
 {% endblock content %}

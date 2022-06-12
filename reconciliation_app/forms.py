@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 
-from .models import ReconcilicationDate
+from .models import ReconciliationDate
 
 
 class LoginForm(AuthenticationForm):
@@ -17,12 +17,12 @@ class LoginForm(AuthenticationForm):
 #         widgets = {
 #             'date': forms.DateInput(attrs={'class': 'input', 'type': 'date'})
 #         }
-# class ReconcilicationForm(forms.Form):
-#     date = forms.DateTimeField(
-#         label='Дата сверки',
-#         required=False,
-#         widget=forms.DateInput(attrs={
-#             'class': 'input',
-#             'type': 'date',
-#         })
-#     )
+class ReconcilicationForm(forms.Form):
+    date = forms.DateTimeField(
+        label='Дата сверки',
+        required=False,
+        widget=forms.DateInput(attrs={
+            'class': 'input',
+            'type': 'date',
+        })
+    )

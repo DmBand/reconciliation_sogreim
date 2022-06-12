@@ -26,7 +26,7 @@ class Product(models.Model):
         ordering = ['category']
 
 
-class ReconcilicationDate(models.Model):
+class ReconciliationDate(models.Model):
     date = models.DateField(verbose_name='дата сверки', blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='товар', null=True)
 

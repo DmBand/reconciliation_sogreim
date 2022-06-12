@@ -120,6 +120,7 @@ body {
     margin-top: 80px;
     padding: 0 20px;
     flex: 1 1 auto; /*!!!*/    
+    margin-bottom: 20px;
 }
 
 .form {
@@ -178,4 +179,16 @@ body {
 
 .footer {
     background-color: rgb(233, 218, 199);
+    text-align: center;
+}
+
+.up-text {
+    margin: 0 auto;
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: rgb(66, 97, 87);
 }
