@@ -7,11 +7,11 @@
     <header class="header" id="head">
         <div class="login-container">
             <div class="login">{{ request.user.username }}</div>
-            <div class="menu"><a class="change-password" href="/admin/password_change/">Изменить пароль</a></div>
+            <div class="menu"><a class="change-password" href="/admin/password_change/" target="_blank">Изменить пароль</a></div>
         </div>
         <nav class="nav">
             <button class="button" type="submit" form="form">Сохранить</button>
-            <a href="/admin/reconciliation_app/reconciliationdate/" class="nav-btn">Даты сверок</a>
+            <a href="/admin/reconciliation_app/reconciliationdate/" class="nav-btn" target="_blank">Даты сверок</a>
             <a href="{% url 'rc_app:logout_view' %}" class="nav-btn">Выход</a>
         </nav>
     </header>

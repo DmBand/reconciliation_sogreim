@@ -20,16 +20,3 @@ function addMenu() {
 }
 
 login.addEventListener('click', addMenu)
-
-// document.addEventListener('DOMContentLoaded', _ => {
-//     test()
-//     // 
-//     function test() {
-//         let mon = new Date()
-//         mon = mon.toLocaleString().split('.')[1]
-//         $('.input').each((i, el) => {
-//             const val = el.value.split('-')[1] === mon ? '' : 'no-'            
-//             el.classList.add(val + 'check')
-//         })
-//     }
-// })
