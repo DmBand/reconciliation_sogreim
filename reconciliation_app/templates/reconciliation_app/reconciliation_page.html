@@ -5,7 +5,10 @@
 {% block content %}
 <div class="wrapper wrapper-rec">
     <header class="header" id="head">
-        <div class="login">{{ request.user.username }}</div>
+        <div class="login-container">
+            <div class="login">{{ request.user.username }}</div>
+            <div class="menu"><a class="change-password" href="/admin/password_change/">Изменить пароль</a></div>
+        </div>
         <nav class="nav">
             <button class="button" type="submit" form="form">Сохранить</button>
             <a href="/admin/reconciliation_app/reconciliationdate/" class="nav-btn">Даты сверок</a>

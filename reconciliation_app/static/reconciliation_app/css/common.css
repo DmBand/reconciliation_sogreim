@@ -79,11 +79,37 @@ body {
     background-color: rgb(233, 218, 199);
 }
 
+.login-container {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
 .login {
     font-size: 20px;
     font-weight: 700;
     /* color: darksalmon; */
     color: rgb(103, 136, 173);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.login:hover {
+    color: rgb(66, 92, 122);
+}
+
+.menu {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.change-password {
+    font-size: 12px;
+    color: #294234;
+    text-transform: uppercase;
 }
 
 .nav {    
@@ -135,7 +161,6 @@ body {
 .one-category {
     display: flex;
     flex-direction: column;
-    align-items: center;
     row-gap: 10px;
 }
 
@@ -155,6 +180,7 @@ body {
     column-gap: 5px;
     row-gap: 10px;
     text-align: center;
+    justify-content: center;
 }
 
 .one-product {
@@ -173,6 +199,7 @@ body {
 
 .label { 
     margin: auto;
+    padding: 5px;
     width: 170px;
 }
 
