@@ -1,0 +1,44 @@
+{% extends 'reconciliation_app/base.html' %}
+{% load latest_date %}
+{% load static %}
+
+{% block content %}
+<div class="wrapper wrapper-rec">
+    <header class="header" id="head">
+        <div class="login-container">
+            <div class="login">{{ request.user.username }}</div>
+            <div class="menu"><a class="change-password" href="/admin/password_change/" target="_blank">Изменить пароль</a></div>
+        </div>
+        <nav class="nav">
+            <a href="" class="reset-link">Сброс</a>
+            <button class="button" type="submit" form="form">Сохранить</button>
+            <a href="/admin/reconciliation_app/reconciliationdate/" class="nav-btn" target="_blank">Даты сверок</a>
+            <a href="{% url 'rc_app:logout_view' %}" class="nav-btn">Выход</a>
+        </nav>
+    </header>
+    <main class="main" id="main">
+        <form class="form" action="" method="post" id="form">
+            {% csrf_token %}
+            {% for c in categories %}
+            <div class="one-category">
+                <h1 class="category-title">{{ c.name }}</h1>
+                <div class="products">
+                    {% for p in c.product_set.all %}
+                    <div class="one-product">
+                        <label class="label" for="{{ p.id }}">{{ p.name }}</label>
+                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{% get_latest p.id %}" onchange="(this.parentNode.classList.add('changed')); (document.querySelector('.button').classList.add('active')); (document.querySelector('.reset-link').classList.add('active'))">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </main>
+    <footer class="footer">
+        <a class="up" href="#main"><p class="up-text">Вверх</p></a>
+    </footer>
+    {% block js %}
+    <script type="module" src="{% static 'reconciliation_app/js/script.js' %}"></script>
+    {% endblock js %}
+</div>
+{% endblock content %}

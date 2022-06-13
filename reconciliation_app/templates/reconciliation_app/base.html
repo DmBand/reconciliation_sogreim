@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'reconciliation_app/css/common.css' %}">
+    {% block styles %}
+    {% endblock styles %}
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+{% block js %}
+{% endblock js %}
+</body>
+</html>
