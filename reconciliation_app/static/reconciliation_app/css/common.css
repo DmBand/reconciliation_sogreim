@@ -101,10 +101,6 @@ body {
     display: none;
 }
 
-.active {
-    display: block;
-}
-
 .change-password {
     font-size: 12px;
     color: #294234;
@@ -114,6 +110,7 @@ body {
 .nav {    
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     column-gap: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;    
@@ -121,7 +118,7 @@ body {
 
 .button {
     width: 300px;
-    height: 50px;
+    padding: 15px;
     text-transform: uppercase;
     font-family: 'Inter';
     font-weight: 700;
@@ -133,7 +130,29 @@ body {
     color: #294234;
 }
 
+.active-btn {
+    background-color: rgb(119, 189, 105);
+}
+
 .button:hover {
+    letter-spacing: 5px;
+}
+
+.reset-link {
+    display: none;
+    width: 150px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: #EFEFEF;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 15px;
+    color: brown; 
+    transition: 0.5s; 
+    letter-spacing: 3px;  
+}
+
+.reset-link:hover {
     letter-spacing: 5px;
 }
 
@@ -279,6 +298,10 @@ body {
 
 .login-btn:hover {
     background-color: #47E585;    
+}
+
+.active {
+    display: block;
 }
 
 .errorlist {
