@@ -26,7 +26,7 @@
                     {% for p in c.product_set.all %}
                     <div class="one-product">
                         <label class="label" for="{{ p.id }}">{{ p.name }}</label>
-                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{% get_latest p.id %}" onchange="(this.parentNode.classList.add('changed')); (document.querySelector('.button').classList.add('active-btn')); (document.querySelector('.reset-link').classList.add('active'))">
+                        <input class="input" id="{{ p.id }}" type="date" name="{{ p.id }}" value="{% get_latest p.id %}" onchange="(this.parentNode.classList.add('changed')); (document.querySelector('.button').classList.add('active')); (document.querySelector('.reset-link').classList.add('active'))">
                     </div>
                     {% endfor %}
                 </div>
