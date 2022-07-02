@@ -213,13 +213,17 @@ body {
     background-color: #47E585;
 }
 
+.check-recently {
+    background-color: coral;
+}
+
 .no-check {
     background-color: indianred;
 }
 
 
 .changed {
-    background-color: rgb(253, 236, 137);
+    background-color: #fdec89;
 }
 
 .label { 
