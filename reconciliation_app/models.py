@@ -2,7 +2,12 @@ from django.db import models
 
 
 class ProductCategory(models.Model):
-    name = models.CharField(max_length=50, verbose_name='название категории', unique=True)
+    """ Категория товаров """
+    name = models.CharField(
+        max_length=50,
+        verbose_name='название категории',
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
@@ -14,8 +19,18 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100, verbose_name='товар', unique=True, db_index=True)
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name='категория товара')
+    """ Товар """
+    name = models.CharField(
+        max_length=100,
+        verbose_name='товар',
+        unique=True,
+        db_index=True,
+    )
+    category = models.ForeignKey(
+        ProductCategory,
+        on_delete=models.CASCADE,
+        verbose_name='категория товара',
+    )
 
     def __str__(self):
         return self.name
@@ -27,8 +42,17 @@ class Product(models.Model):
 
 
 class ReconciliationDate(models.Model):
-    date = models.DateField(verbose_name='дата сверки', blank=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='товар', null=True)
+    """ Дата сверки """
+    date = models.DateField(
+        verbose_name='дата сверки',
+        blank=True,
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name='товар',
+        null=True,
+    )
 
     def __str__(self):
         return str(self.date)

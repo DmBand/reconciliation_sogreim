@@ -11,6 +11,7 @@ from .models import ProductCategory, Product, ReconciliationDate
 
 
 class LoginUserView(LoginView):
+    """ Логин """
     form_class = LoginForm
     template_name = 'reconciliation_app/login.html'
 
@@ -25,12 +26,14 @@ class LoginUserView(LoginView):
 
 @login_required(login_url='rc_app:login_view')
 def logout_view(request):
+    """ Выход """
     logout(request)
     return redirect('rc_app:login_view')
 
 
 @login_required(login_url='rc_app:login_view')
 def reconciliation_page(request):
+    """ Страница сверки с датами сверки """
     categories = ProductCategory.objects.all()
     if request.method == 'POST':
         cleaned_data = request.POST.copy()

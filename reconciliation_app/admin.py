@@ -3,15 +3,29 @@ from .models import ProductCategory, Product, ReconciliationDate
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category')
-    search_fields = ('name',)
-    list_filter = ('category',)
+    list_display = (
+        'name',
+        'category',
+    )
+    search_fields = (
+        'name',
+    )
+    list_filter = (
+        'category',
+    )
 
 
 class ReconcilicationDateAdmin(admin.ModelAdmin):
-    list_display = ('date', 'product')
-    list_filter = ('product',)
-    ordering = ['-date']
+    list_display = (
+        'date',
+        'product',
+    )
+    list_filter = (
+        'product',
+    )
+    ordering = [
+        '-date',
+    ]
 
 
 admin.site.register(ProductCategory)
